@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="notice">
+
+  	<select id="noticeList" resultType="noticeVo">
+  		SELECT * FROM notice WHERE no_st='Y'
+  	</select>
+  	
+  	<select id="allNoticeList" resultType="noticeVo">
+  		SELECT *
+		FROM(
+			SELECT ROWNUM rn, n.NO_SEQ,
+			n.NO_MEM_ID,
+			n.NO_NAME,n.NO_ST,n.NO_DT
+			FROM notice n)
+		WHERE rn BETWEEN  (#{page} - 1) * #{pageSize} + 1 and  #{page} * ${pageSize}
+  	</select>
+  	
+  	<select id="countNotice" resultType="int">
+  		SELECT COUNT(*) FROM NOTICE
+  	</select>
+  	
+  	<update id="disabledNotice" parameterType="noticeVo">
+  		UPDATE NOTICE SET NO_ST = #{no_st} WHERE NO_SEQ=#{no_seq}
+  	</update>
+  	
+  	<select id="noticeName" resultType="String" parameterType="int">
+  		select no_name from notice where no_seq=#{category_seq}
+  	</select>
+
+  	<insert id="insertNotice" parameterType="noticeVo">
+  		insert into notice values(no_seq.nextval,#{no_mem_id},#{no_name},'Y',sysdate)
+  	</insert>
+  </mapper>

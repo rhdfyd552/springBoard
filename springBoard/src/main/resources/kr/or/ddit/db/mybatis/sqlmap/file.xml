@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="file">
+  	<insert id="insertFile" parameterType="fileVo">
+  		
+  		insert into files 
+  		values
+  		<foreach collection="vo" item="list" separator=",">
+  			(fi_seq.nextval, #{list.fi_board_seq},#{list.fi_path},#{list.fi_name})
+  		</foreach>
+  	</insert>
+  	
+  	<select id="getFileList" parameterType="int" resultType="fileVo">
+  		select * from files where fi_board_seq = #{board_seq}
+  	</select>
+  	
+  	<select id="list" resultType="fileVo">
+  		select * from files
+  	</select>
+  </mapper>

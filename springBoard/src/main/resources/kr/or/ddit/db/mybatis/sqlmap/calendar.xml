@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="calendar">
+	<select id="getCalendar" resultType="calendarVo">
+		SELECT * FROM CALENDAR
+	</select>
+	
+	<insert id="setCalendar" parameterType="calendarVo">
+		INSERT INTO CALENDAR 
+		VALUES(ca_seq.nextval,#{cal_mem_id},#{cal_title},#{cal_start_time},#{cal_end_time})
+	</insert>
+	
+	<update id="updateCalendar" parameterType="calendarVo">
+		update CALENDAR
+		set cal_end_time=#{cal_end_time}
+		where cal_mem_id=#{cal_mem_id}
+	</update>
+  	<select id="getMemberTime" resultType="calendarVo" parameterType="String">
+  		select * from CALENDAR where cal_mem_id = #{cal_mem_id}
+  	</select>
+  </mapper>

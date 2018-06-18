@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+
+<typeAliases>
+	<typeAlias alias="memberVO" type="kr.or.ddit.member.model.MemberVo"/>
+	<typeAlias alias="noticeVo" type="kr.or.ddit.notice.model.NoticeVo"/>
+	<typeAlias alias="boardVo" type="kr.or.ddit.board.model.BoardVo"/>
+	<typeAlias alias="fileVo" type="kr.or.ddit.file.model.FileVo"/>
+	<typeAlias alias="calendarVo" type="kr.or.ddit.calendal.model.CalendarVo"/>
+</typeAliases>
+
+ 
+  <mappers>
+    <mapper resource="kr/or/ddit/db/mybatis/sqlmap/member.xml"/>
+    <mapper resource="kr/or/ddit/db/mybatis/sqlmap/notice.xml"/>
+    <mapper resource="kr/or/ddit/db/mybatis/sqlmap/board.xml"/>
+    <mapper resource="kr/or/ddit/db/mybatis/sqlmap/file.xml"/>
+    <mapper resource="kr/or/ddit/db/mybatis/sqlmap/calendar.xml"/>
+  </mappers>
+</configuration>
